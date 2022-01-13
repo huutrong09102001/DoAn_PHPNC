@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\provider;
 use App\Http\Requests\StoreproviderRequest;
 use App\Http\Requests\UpdateproviderRequest;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\Request;
 
 class ProviderController extends Controller
 {
@@ -15,7 +17,10 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        //
+        $lstProvider = provider::all();
+        
+        
+        return view('layouts.provider.index' , ['lstProvider' => $lstProvider ]);
     }
 
     /**
@@ -34,9 +39,19 @@ class ProviderController extends Controller
      * @param  \App\Http\Requests\StoreproviderRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreproviderRequest $request)
+    public function store(Request $request)
     {
-        //
+        $provider = new provider;
+        
+
+        $provider->fill([
+            'name' => $request->input('ten'),
+            'status' => '0',
+
+        ]);
+        $provider->save();
+        
+        return Redirect::route('provider.index');
     }
 
     /**
@@ -57,8 +72,9 @@ class ProviderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(provider $provider)
-    {
-        //
+    { 
+       
+        return view('layouts.provider.edit' ,["provider" => $provider]);
     }
 
     /**
@@ -68,9 +84,13 @@ class ProviderController extends Controller
      * @param  \App\Models\provider  $provider
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateproviderRequest $request, provider $provider)
+    public function update(Request $request, provider $provider)
     {
-        //
+        $provider->fill([
+            'name' => $request->input('ten'),
+        ]);
+        $provider->save();
+        return Redirect::route('provider.index');
     }
 
     /**
@@ -81,6 +101,7 @@ class ProviderController extends Controller
      */
     public function destroy(provider $provider)
     {
-        //
+        $provider->delete();
+        return Redirect::route('provider.index');
     }
 }

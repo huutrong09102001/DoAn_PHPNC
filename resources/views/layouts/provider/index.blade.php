@@ -3,7 +3,7 @@
 	<head>
 		
 <meta charset="utf-8" />
-		<title>Tables - Ace Admin</title>
+		<title>Admin</title>
 
 		<meta name="description" content="Static &amp; Dynamic Tables" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -43,66 +43,7 @@
 	</head>
 
 	<body>
-		<div class="navbar" id="navbar">
-			<script type="text/javascript">
-				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
-			</script>
-
-			<div class="navbar-inner">
-				<div class="container-fluid">
-					<a href="#" class="brand">
-						<small>
-							<i class="icon-leaf"></i>
-							 Admin
-						</small>
-					</a><!-- /.brand -->
-
-					<ul class="nav ace-nav pull-right">
-						
-						
-
-						
-
-						<li class="light-blue">
-							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="assets/avatars/user.jpg" alt="Jason's Photo" />
-								<span class="user-info">
-									<small>Welcome,</small>
-									Jason
-								</span>
-
-								<i class="icon-caret-down"></i>
-							</a>
-
-							<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
-								<li>
-									<a href="#">
-										<i class="icon-cog"></i>
-										Settings
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<i class="icon-user"></i>
-										Profile
-									</a>
-								</li>
-
-								<li class="divider"></li>
-
-								<li>
-									<a href="#">
-										<i class="icon-off"></i>
-										Logout
-									</a>
-								</li>
-							</ul>
-						</li>
-					</ul><!-- /.ace-nav -->
-				</div><!-- /.container-fluid -->
-			</div><!-- /.navbar-inner -->
-		</div>
+		
 
 		<div class="main-container container-fluid">
 			<a class="menu-toggler" id="menu-toggler" href="#">
@@ -143,7 +84,6 @@
 						<span class="btn btn-danger"></span>
 					</div>
 				</div><!-- #sidebar-shortcuts -->
-				
 
 				<ul class="nav nav-list">
 					
@@ -158,14 +98,14 @@
 
 						<ul class="submenu">
 							<li class="active">
-								<a href="tables.html">
+								<a href="{{route('product.index')}}">
 									<i class="icon-double-angle-right"></i>
 									Sản phẩm &amp; Chi tiết sản phẩm
 								</a>
 							</li>
 
 							<li>
-								<a href="{{route('provider.index')}}">
+								<a href="">
 									<i class="icon-double-angle-right"></i>
 									Loại Sản phẩm
 								</a>
@@ -349,7 +289,7 @@
 								<i class="icon-angle-right arrow-icon"></i>
 							</span>
 						</li>
-						<li class="active">Sản phẩm &amp; Chi tiết sản phẩm</li>
+						<li class="active">Loại sản phẩm  </li>
 					</ul><!-- .breadcrumb -->
 
 					<div class="nav-search" id="nav-search">
@@ -368,7 +308,7 @@
 							Tables
 							<small>
 								<i class="icon-double-angle-right"></i>
-								Sản Phẩm &amp; Chi tiết sản phẩm
+								Loại sản phẩm   
 							</small>
 						</h1>
 					</div><!-- /.page-header -->
@@ -387,15 +327,15 @@
 
 							<h4 class="pink">
 								<i class="icon-hand-right icon-animated-hand-pointer blue"></i>
-								<a href="#modal-table" role="button" class="green" data-toggle="modal"> + Thêm một sản phẩm mới </a>
+								<a href="#modal-table" role="button" class="green" data-toggle="modal"> + Thêm một loại sản phẩm mới </a>
 							</h4>
 
 							<div class="hr hr-18 dotted hr-double"></div>
 
 							<div class="row-fluid">
-								<h3 class="header smaller lighter blue">Danh sách sản phẩm</h3>
+								<h3 class="header smaller lighter blue">Danh sách loại sản phẩm</h3>
 								<div class="table-header">
-									Danh sách sản phẩm
+									Danh sách loại sản phẩm
 								</div>
 
 								<table id="sample-table-2" class="table table-striped table-bordered table-hover">
@@ -407,15 +347,11 @@
 													<span class="lbl"></span>
 												</label>
 											</th>
-											<th>Image</th>
+											
 											<th>Id</th>
 											<th>Name</th>
-											<th>Price</th>
-											<th>Quantity</th>
-											<th>Screen</th>
-											<th>Ram</th>
-											<th>Rom</th>
-											<th>Pin</th>
+											
+											
 											<th class="hidden-480">Action</th>
 					
 											<th class="hidden-480">Status</th>
@@ -425,7 +361,7 @@
 									</thead>
 
 									<tbody>
-										@foreach ($lstProduct as $model)
+										@foreach ($lstProvider as $model)
 										<tr>
 											<td class="center">
 												<label>
@@ -433,9 +369,7 @@
 													<span class="lbl"></span>
 												</label>
 											</td>
-											<td>
-											<img src="{{$model->imageUrl}}" width="100px" height="100px">
-											</td>
+											
 
 											<td>
 												<a href="#">{{$model->id}}</a>
@@ -443,19 +377,7 @@
 											<td>
 												<a href="#">{{$model->name}}</a>
 											</td>
-											<td>{{$model->price}}</td>
-											<td class="hidden-480">{{$model->quantity}}</td>
-											<td class="hidden-phone">{{$model->screen}}</td>
-											<td class="hidden-480">
-											<span class="label label-warning">{{$model->ram}}</span>
-											</td>
-
-											<td class="hidden-480">
-												<span class="label label-warning">{{$model->rom}}</span>
-											</td>
-											<td class="hidden-480">
-												<span class="label label-warning">{{$model->pin}}</span>
-											</td>
+											
 
 											<td>
 												<div class="hidden-phone visible-desktop action-buttons">
@@ -464,11 +386,11 @@
 													</a>
 
 													<button type="button">
-													<a class="green" href="{{route('product.edit' ,['product' => $model])}}">
+													<a class="green" href="{{route('provider.edit' ,['provider' => $model])}}">
 														<i class="icon-pencil bigger-130"></i>
 													</a>
 													</button><br>
-													<form method="post" action="{{route('product.destroy',['product' => $model])}}">
+													<form method="post" action="{{route('provider.destroy',['provider' => $model])}}">
 													@csrf
 													@method('DELETE')
 														<button type="submit"><i class="icon-trash bigger-130"></i></button>
@@ -510,10 +432,10 @@
 												</div>
 											</td>
 											<td>
-												@if($model->quantity == 0)
-												<a href="#">Hết hàng</a>
+												@if($model->status == 0)
+												<a href="#">Còn kinh doanh</a>
 												@else 
-												<a href="#">Còn hàng</a>
+												<a href="#">Ngừng kinh doanh</a>
 												@endif
 
 											</td>
@@ -528,111 +450,24 @@
 								<div class="modal-header no-padding">
 									<div class="table-header">
 										<button type="button" class="close" data-dismiss="modal">&times;</button>
-										Thêm một sản phẩm mới 
+										Thêm một loại sản phẩm mới 
 									</div>
 								</div>
 
 								<div class="modal-body no-padding">
 									<div class="row-fluid">
 										
-										<form class="form-horizontal" method="post" action="{{route('product.store')}}" enctype="multipart/form-data">
+										<form class="form-horizontal" method="post" action="{{route('provider.store')}}" enctype="multipart/form-data">
 											@csrf
 										<div class="control-group">
-									<label class="control-label" for="ten">Tên sản phẩm</label>
+									<label class="control-label" for="ten">Tên loại sản phẩm</label>
 
 									<div class="controls">
-										<input type="text" name="ten" placeholder="Nhập tên sản phẩm" />
+										<input type="text" name="ten" placeholder="Nhập tên loại sản phẩm" />
 									</div>
-								</div>
-
-								<div class="control-group">
-									<label class="control-label" for="mota">Mô tả</label>
-
-									<div class="controls">
-										<input type="text" name="mota" placeholder="Nhập mô tả" />
-										
-									</div>
-								</div>
-
-								<div class="control-group">
-									<label class="control-label"  for="gia">Giá</label>
-
-									<div class="controls">
-										<input  type="text" name="gia" placeholder="Nhập giá .." />
-										&nbsp; &nbsp;
-										
-									</div>
-								</div>
-
-								<div class="control-group">
-									<label class="control-label" >Số lượng</label>
-
-									<div class="controls">
-										<input  type="text" name="soluong" placeholder="Nhập số lượng" />
-										<div class="help-block" name="soluong"></div>
-									</div>
-								</div>
-
-								<div class="control-group">
-									<label class="control-label" for="manhinh">Màn hình</label>
-
-									<div class="controls">
-										
-										<input  type="text" name="manhinh" placeholder="Nhập thông số màn hình " />
-										<div class="help-block" id="input-span-slider"></div>
-									</div>
-								</div>
-
-								<div class="control-group">
-									<label class="control-label" for="ram">Ram</label>
-
-									<div class="controls">
-										
-										<input class="span11" type="text" name="ram" placeholder="Nhập thông số Ram" />
-										<div class="help-block" id="input-span-slider"></div>
-									</div>
-								</div>
-
-								<div class="control-group">
-									<label class="control-label" for="manhinh">Rom</label>
-
-									<div class="controls">
-										
-										<input class="span11" type="text" name="rom" placeholder="Nhập thông số Ram" />
-										<div class="help-block" id="input-span-slider"></div>
-									</div>
-								</div>
-
-								<div class="space-4"></div>
-
-								<div class="control-group">
-									<label class="control-label" for="manhinh">Pin</label>
-
-									<div class="controls">
-										
-										<input class="span11" type="text" name="pin" placeholder="Nhập thông số Pin" />
-										<div class="help-block" id="input-span-slider"></div>
-									</div>
-								</div>
-								<div class="control-group">
-                                <label class="control-label" for="manhinh">Loại</label>
-                                    <select class="controls" name="loai">
-                                        <option>--Chọn loại-- </option>
-                                    @foreach($lstProv as $prov)
-                                        <option >
-                                            {{$prov->name}}
-                                        </option>
-                                    @endforeach
-                                    </select>
-
-                                </div >
-                                <div class="control-group">
-                                <label class="control-label" for="manhinh">Hình ảnh</label>
-                                
-                                <input type="file" accept="images/*" name="hinh"><br>
-
-                                </div>
-
+								</div>																
+								
+								
 								<div class="form-actions">
 									<button class="btn btn-info" type="submit">
 										<i class="icon-ok bigger-110"></i>

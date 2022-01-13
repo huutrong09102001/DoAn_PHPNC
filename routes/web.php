@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProviderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,4 @@ use App\Http\Controllers\ProductController;
     return view('welcome');
 }); */
 Route::resource('product', ProductController::class);
+Route::resource('provider', ProviderController::class);
