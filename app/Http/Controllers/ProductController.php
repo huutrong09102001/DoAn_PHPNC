@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateproductRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 
 
@@ -24,14 +25,18 @@ class ProductController extends Controller
         if(Storage::disk('public')->exists($product->imageUrl)){
             $product->imageUrl = Storage::url($product->imageUrl);
         } else {
-            $product->imageUrl = "/img/no_image_placeholder.png" ;
+            $product->imageUrl = "/images/iphone-12-xanh-la-1-1-org.jpg";
 
         }
     }
     public function index()
     {
+        $lstProv = provider::all();
         $lstProduct = product::all();
-        return view('layouts.product.index' , ['lstProduct' => $lstProduct]);
+        foreach ($lstProduct as $pro){
+            $this->fixImage($pro);
+        }
+        return view('layouts.product.index' , ['lstProduct' => $lstProduct , 'lstProv' => $lstProv]);
         
     }
 
@@ -42,7 +47,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+       
     }
 
     /**
@@ -51,9 +56,37 @@ class ProductController extends Controller
      * @param  \App\Http\Requests\StoreproductRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreproductRequest $request)
+    public function store(Request $request)
     {
-        //
+        $product = new product;
+        $loai = 1;
+        if($request->input('loai') == 'Samsung')
+        $loai = 2;
+        else if ($request->input('loai') == 'Xiaomi')
+        $loai = 3;
+        else if ($request->input('loai') == 'Oppo')
+        $loai = 4;
+
+        $product->fill([
+            'name' => $request->input('ten'),
+            'description' => $request->input('mota'),
+            'price' => $request->input('gia'),
+            'quantity' => $request->input('soluong'),
+            'screen' => $request->input('manhinh'),
+            'ram' => $request->input('ram'),
+            'rom' => $request->input('rom'),
+            'pin' => $request->input('pin'),
+            'imageUrl' => '',
+            'status'=> '0',
+            'providerId' => $loai,
+
+        ]);
+        $product->save();
+        if($request->hasFile('hinh')){
+            $product->imageUrl = $request->file('hinh')->store('images/product/'.$product->id , 'public');
+        }
+        $product->save();
+        return Redirect::route('product.index');
     }
 
     /**
@@ -83,26 +116,26 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateproductRequest  $request
+     * @param  \App\Http\Requests\Request  $request
      * @param  \App\Models\product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateproductRequest $request, product $product)
+    public function update(Request $request, product $product)
     {
         if($request->hasFile("hinh")){
             $product->imageUrl = $request->file("hinh")->store('images/product/'.$product->id,'public');
 
         }
         $product->fill([
-            'name' -> $request->input('ten'),
-            'description' -> $request->input('mota'),
-            'price' -> $request->input('gia'),
-            'quantity' -> $request->input('soluong'),
-            'screen' -> $request->input('manhinh'),
-            'ram' -> $request->input('ram'),
-            'rom' -> $request->input('rom'),
-            'pin' -> $request->input('pin'),
-            'providerId' -> $request->input('loai'),
+            'name' => $request->input('ten'),
+            'description' => $request->input('mota'),
+            'price' => $request->input('gia'),
+            'quantity' => $request->input('soluong'),
+            'screen' => $request->input('manhinh'),
+            'ram' => $request->input('ram'),
+            'rom' => $request->input('rom'),
+            'pin' => $request->input('pin'),
+            'providerId' => $request->input('loai'),
         ]);
         $product->save();
         return Redirect::route('product.index');
@@ -116,6 +149,7 @@ class ProductController extends Controller
      */
     public function destroy(product $product)
     {
-        //
+        $product->delete();
+        return Redirect::route('product.index');
     }
 }

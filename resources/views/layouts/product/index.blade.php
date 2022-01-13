@@ -374,7 +374,7 @@
 												</label>
 											</td>
 											<td>
-											<a href=""><img src=""></img></a>
+											<img src="{{$model->imageUrl}}" width="100px" height="100px">
 											</td>
 
 											<td>
@@ -403,13 +403,16 @@
 														<i class="icon-zoom-in bigger-130"></i>
 													</a>
 
+													<button type="button">
 													<a class="green" href="{{route('product.edit' ,['product' => $model])}}">
 														<i class="icon-pencil bigger-130"></i>
 													</a>
-
-													<a class="red" href="#">
-														<i class="icon-trash bigger-130"></i>
-													</a>
+													</button><br>
+													<form method="post" action="{{route('product.destroy',['product' => $model])}}">
+													@csrf
+													@method('DELETE')
+														<button type="submit"><i class="icon-trash bigger-130"></i></button>
+													</form>
 												</div>
 
 												<div class="hidden-desktop visible-phone">
@@ -472,7 +475,8 @@
 								<div class="modal-body no-padding">
 									<div class="row-fluid">
 										
-										<form class="form-horizontal">
+										<form class="form-horizontal" method="post" action="{{route('product.store')}}" enctype="multipart/form-data">
+											@csrf
 										<div class="control-group">
 									<label class="control-label" for="ten">Tên sản phẩm</label>
 
@@ -550,9 +554,27 @@
 										<div class="help-block" id="input-span-slider"></div>
 									</div>
 								</div>
+								<div class="control-group">
+                                <label class="control-label" for="manhinh">Loại</label>
+                                    <select class="controls" name="loai">
+                                        <option>--Chọn loại-- </option>
+                                    @foreach($lstProv as $prov)
+                                        <option >
+                                            {{$prov->name}}
+                                        </option>
+                                    @endforeach
+                                    </select>
+
+                                </div >
+                                <div class="control-group">
+                                <label class="control-label" for="manhinh">Hình ảnh</label>
+                                
+                                <input type="file" accept="images/*" name="hinh"><br>
+
+                                </div>
 
 								<div class="form-actions">
-									<button class="btn btn-info" type="button">
+									<button class="btn btn-info" type="submit">
 										<i class="icon-ok bigger-110"></i>
 										Submit
 									</button>

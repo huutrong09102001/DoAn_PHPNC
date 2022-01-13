@@ -80,8 +80,9 @@
 						<div class="span12">
 							<!-- PAGE CONTENT BEGINS -->
 
-							<form class="form-horizontal" method="put" action="{{route('product.update' , ['product' => $product])}}" enctype="multipart/form-data">
-                            
+							<form class="form-horizontal" method="post" action="{{route('product.update' , ['product' => $product])}}" enctype="multipart/form-data">
+                            @csrf
+							@method('patch')
 										<div class="control-group">
 									<label class="control-label">Tên sản phẩm</label>
 
@@ -174,7 +175,7 @@
                                 <div class="control-group">
                                 <label class="control-label" for="manhinh">Hình ảnh</label>
                                 <img style="width:100px; max-height:100px; object-fit:contain" src="{{$product->imageUrl}}">
-                                <input type="file" accept="image/*" name="hinh"><br>
+                                <input type="file" accept="images/*" name="hinh"><br>
 
                                 </div>
 
