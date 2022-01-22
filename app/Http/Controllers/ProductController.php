@@ -97,7 +97,7 @@ class ProductController extends Controller
      */
     public function show(product $product)
     {
-        //
+        
     }
 
     /**

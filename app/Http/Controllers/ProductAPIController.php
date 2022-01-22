@@ -20,6 +20,19 @@ class ProductAPIController extends Controller
             "data" => $danhsach
         ]);
     }
+    public function GetListProductByDate()
+    {
+        $product = product::whereMonth('created_at' , '1')->get();
+        return json_encode([
+            "success" => true ,
+            "data" => $product
+
+        ]);
+    }
+    function LayDSSanPhamMoi()
+    {
+        
+    }
     public function index()
     {
         
