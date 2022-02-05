@@ -2,40 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\product;
+use App\Models\invoice_detail;
 use Illuminate\Http\Request;
 
-class ProductAPIController extends Controller
+class InvoiceDetailAPIController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    function LayDanhSach()
-    {
-        $danhsach = product::orderBy('price')->get();
-        return json_encode([
-            "success" => true ,
-            "data" => $danhsach
-        ]);
-    }
-    public function GetListProductByDate()
-    {
-        $product = product::whereMonth('created_at' , '1')->get();
-        return json_encode([
-            "success" => true ,
-            "data" => $product
-
-        ]);
-    }
-    function LayDSSanPhamMoi()
-    {
-        
-    }
     public function index()
     {
-        
+        //
     }
 
     /**
@@ -46,16 +25,25 @@ class ProductAPIController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $detail = new invoice_detail;
+        $detail->fill([
+            'invoiceId' => $request->post('_invoiceId'),
+            'productId' => $request->post('_productId'),
+            'quantity' => $request->post('_quantity'),
+            'price' => $request->post('_price'),
+            'total' => $request->post('_total'),       
+        ]);
+        $detail->save();
+       
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\product  $product
+     * @param  \App\Models\invoice_detail  $invoice_detail
      * @return \Illuminate\Http\Response
      */
-    public function show(product $product)
+    public function show(invoice_detail $invoice_detail)
     {
         //
     }
@@ -64,10 +52,10 @@ class ProductAPIController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\product  $product
+     * @param  \App\Models\invoice_detail  $invoice_detail
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, product $product)
+    public function update(Request $request, invoice_detail $invoice_detail)
     {
         //
     }
@@ -75,10 +63,10 @@ class ProductAPIController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\product  $product
+     * @param  \App\Models\invoice_detail  $invoice_detail
      * @return \Illuminate\Http\Response
      */
-    public function destroy(product $product)
+    public function destroy(invoice_detail $invoice_detail)
     {
         //
     }

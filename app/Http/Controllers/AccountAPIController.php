@@ -12,6 +12,13 @@ class AccountAPIController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function getListUsername (Request $request)
+    {
+        $usernames = account::where('username' , '=' , $request->post('_username'))->value('username');
+        return json_encode([
+            'data' => $usernames
+        ]);
+    }
     public function login (Request $request)
     {
         if($user = account::where('username' , '=' ,$request->post('_username'))->where('password', '=' ,$request->post("_password"))->get())
@@ -48,7 +55,7 @@ class AccountAPIController extends Controller
             'sex' => $request->post('_gioitinh'),
             'status' => '0',
         ]);
-        if($acc->save() ){
+        if($acc->save()){
             return response()->json([
                 'Success' => true
             ]);
