@@ -28,6 +28,7 @@ Route::post('account/signup' , [AccountAPIController::class , 'signup']);
 Route::post('account/getListUsername' , [AccountAPIController::class , 'getListUsername']);
 route::get('invoice/getInvoiceList' , [InvoiceAPIController::class , 'index']);
 route::post('invoice/newInvoice' , [InvoiceAPIController::class , 'store']);
-route::get('invoice/getInvoiceId' , [InvoiceAPIController::class , 'getInvoiceId']);
+route::post('invoice/getInvoiceId' , [InvoiceAPIController::class , 'getInvoiceId']);
 route::post('invoiceDetail/newInvoiceDetail' , [InvoiceDetailAPIController::class ,'store'] );
+route::post('invoice/getListInvoiceByAccountId',  [InvoiceAPIController::class , 'getListInvoice']);
 
