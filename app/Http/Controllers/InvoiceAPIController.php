@@ -12,10 +12,16 @@ class InvoiceAPIController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
+    public function getListInvoiceById (Request $request){
+        $invoice = invoice::where('accountId' , '=' , $request->post('_accountId') )->select('id' , 'subtotal' , 'status' ,'date')->get();
+        return json_encode ([
+            'data' => $invoice,
+        ]);
+    }
+    
     public function getListInvoice (Request $request){
         $invoice = invoice::join('invoice_details' , 'invoice_details.invoiceId' , '=' , 'invoices.id')->join('products' , 'products.id' ,'=' , 'invoice_details.productId')
-        ->where('accountId' , '=' , $request->post('_accountId'))->select('invoices.id', 'invoices.subtotal', 'invoices.accountId' , 'invoice_details.*' , 'products.name' , 'products.imageUrl' )->get();
+        ->where('accountId' , '=' , $request->post('_accountId'))->select('invoices.id', 'invoices.subtotal', 'invoices.accountId' , 'invoice_details.productId' ,'invoice_details.quantity','invoice_details.price','invoice_details.total','invoices.status', 'products.name' , 'products.imageUrl' )->first();
         
         return json_encode ([
             'data' => $invoice,

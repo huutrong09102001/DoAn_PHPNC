@@ -26,9 +26,10 @@ Route::get('product/productbydate' , [ProductAPIController::class , 'GetListProd
 Route::post('account/login' , [AccountAPIController::class , 'login']);
 Route::post('account/signup' , [AccountAPIController::class , 'signup']);
 Route::post('account/getListUsername' , [AccountAPIController::class , 'getListUsername']);
-route::get('invoice/getInvoiceList' , [InvoiceAPIController::class , 'index']);
-route::post('invoice/newInvoice' , [InvoiceAPIController::class , 'store']);
-route::post('invoice/getInvoiceId' , [InvoiceAPIController::class , 'getInvoiceId']);
-route::post('invoiceDetail/newInvoiceDetail' , [InvoiceDetailAPIController::class ,'store'] );
-route::post('invoice/getListInvoiceByAccountId',  [InvoiceAPIController::class , 'getListInvoice']);
+Route::get('invoice/getInvoiceList' , [InvoiceAPIController::class , 'index']);
+Route::post('invoice/newInvoice' , [InvoiceAPIController::class , 'store']);
+Route::post('invoice/getInvoiceId' , [InvoiceAPIController::class , 'getInvoiceId']);
+Route::post('invoiceDetail/newInvoiceDetail' , [InvoiceDetailAPIController::class ,'store'] );
+Route::post('invoice/getListInvoiceByAccountId',  [InvoiceAPIController::class , 'getListInvoiceById']);
+Route::post('invoiceDetail/getListInvoiceDetail', [InvoiceDetailAPIController::class , 'getListInvoiceDetail']);
 

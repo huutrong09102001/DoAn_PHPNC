@@ -12,6 +12,31 @@ class InvoiceDetailAPIController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     function countDetail($invoiceId){
+        $count = invoice_detail::ưhere('invoiceId' , '=' , $invoiceId)->count();
+        return $count;
+      }
+      
+    public function getListInvoiceDetail (Request $request){
+        function countDetail($invoiceId){
+            $count = invoice_detail::where('invoiceId' , '=' , $invoiceId)->count();
+            return $count;
+          }
+        $count = countDetail($request->post('_invoiceId'));
+        $InvoiceDetail = invoice_detail::join('products' , 'products.id' , '=' , 'invoice_details.productId')->join('invoices' , 'invoices.id' , '=' , 'invoice_details.invoiceId')->where('invoiceId' , '=' , $request->post('_invoiceId'))
+        ->select('invoice_details.invoiceId' , 'invoice_details.productId' , 'invoice_details.quantity' , 'invoice_details.price' ,'invoices.date', 'invoice_details.total', 'products.name' , 'products.imageUrl' )->get();
+        return json_encode ([
+            'data' => $InvoiceDetail,
+            'count' =>$count,
+        ]);
+    }
+    
+    public function getInvoiceDetail(Request $request){
+        $invoiceDetail = invoice_detail::where('invoiceId' , '=' , $request->post('_invoiceId'))->select('invoiceId' , 'productId' , 'quantity' , 'price' , 'total')-> get();
+        return json_encode ([
+            'data' => $invoiceDetail,
+        ]);
+    }
     public function index()
     {
         //
