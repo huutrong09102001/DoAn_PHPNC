@@ -15,7 +15,7 @@
 		<link rel="stylesheet" href="{{asset('frontend/css/font-awesome.min.css')}}" />
 
 		<!--[if IE 7]>
-		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+		  <link rel="stylesheet" href="assets//css/font-awesome-ie7.min.css"/>
 		<![endif]-->
 
 		<!-- page specific plugin styles -->
@@ -157,8 +157,8 @@
 						</a>
 
 						<ul class="submenu">
-							<li class="active">
-								<a href="tables.html">
+							<li >
+								<a href="{{route('product.index')}}">
 									<i class="icon-double-angle-right"></i>
 									Sản phẩm &amp; Chi tiết sản phẩm
 								</a>
@@ -182,29 +182,26 @@
 						</a>
 
 						<ul class="submenu">
-							<li>
+							<li >
 								<a href="{{route('order.confirm')}}">
 									<i class="icon-double-angle-right"></i>
 									Đơn chờ xác nhận
-									<span class="badge badge-primary "><?php echo($countConfirm) ?></span>
 								</a>
-								
+
+
 							</li>
-							
 
 							<li>
 								<a href="{{route('order.transported')}}">
 									<i class="icon-double-angle-right"></i>
-									Đang vận chuyển
-									<span class="badge badge-primary "><?php echo($countTransported) ?></span>
+									Đơn đang vận chuyển
 								</a>
 							</li>
 
-							<li>
-								<a href="{{route('order.shipping')}}">
+							<li class="active">
+								<a href="">
 									<i class="icon-double-angle-right"></i>
 									Đơn đang giao
-									<span class="badge badge-primary "><?php echo($countShipping) ?></span>
 								</a>
 							</li>
 
@@ -212,7 +209,6 @@
 								<a href="{{route('order.pending')}}">
 									<i class="icon-double-angle-right"></i>
 									Đơn chờ xử lý
-									<span class="badge badge-primary "><?php echo($countPending) ?></span>
 								</a>
 							</li>
 							
@@ -350,13 +346,13 @@
 						</li>
 
 						<li>
-							<a href="#">Tables</a>
+							<a href="#">Đơn hàng</a>
 
 							<span class="divider">
 								<i class="icon-angle-right arrow-icon"></i>
 							</span>
 						</li>
-						<li class="active">Sản phẩm &amp; Chi tiết sản phẩm</li>
+						<li class="active">Đơn đang giao</li>
 					</ul><!-- .breadcrumb -->
 
 					<div class="nav-search" id="nav-search">
@@ -372,10 +368,10 @@
 				<div class="page-content">
 					<div class="page-header position-relative">
 						<h1>
-							Tables
+							Đơn hàng
 							<small>
 								<i class="icon-double-angle-right"></i>
-								Sản Phẩm &amp; Chi tiết sản phẩm
+								Đang giao
 							</small>
 						</h1>
 					</div><!-- /.page-header -->
@@ -384,17 +380,14 @@
 						<div class="span12">
 							<!-- PAGE CONTENT BEGINS -->
 
-							<h4 class="pink">
-								<i class="icon-hand-right icon-animated-hand-pointer blue"></i>
-								<a href="#modal-table" role="button" class="green" data-toggle="modal"> + Thêm một sản phẩm mới </a>
-							</h4>
+							
 
 							
 
 							<div class="row-fluid">
-								<h3 class="header smaller lighter blue">Danh sách sản phẩm</h3>
+								
 								<div class="table-header">
-									Danh sách sản phẩm
+									Danh sách đơn đang giao
 								</div>
 
 								<table id="sample-table-2" class="table table-striped table-bordered table-hover">
@@ -406,15 +399,12 @@
 													<span class="lbl"></span>
 												</label>
 											</th>
-											<th>Image</th>
-											<th>Id</th>
-											<th>Name</th>
-											<th>Price</th>
-											<th>Quantity</th>
-											<th>Screen</th>
-											<th>Ram</th>
-											<th>Rom</th>
-											<th>Pin</th>
+											<th>Mã hóa đơn</th>
+											<th>Mã tài khoản</th>
+											<th>Tên khách hàng</th>
+											<th>Ngày đặt hàng</th>
+											<th>Tổng tiền</th>
+											
 											<th class="hidden-480">Action</th>
 					
 											<th class="hidden-480">Status</th>
@@ -424,7 +414,8 @@
 									</thead>
 
 									<tbody>
-										@foreach ($lstProduct as $model)
+										@if($lstOrder)
+										@foreach ($lstOrder as $model)
 										<tr>
 											<td class="center">
 												<label>
@@ -432,46 +423,25 @@
 													<span class="lbl"></span>
 												</label>
 											</td>
-											<td>
-											<img src="{{$model->imageUrl}}" width="100px" height="100px">
-											</td>
-
+											
 											<td>
 												<a href="#">{{$model->id}}</a>
 											</td>
 											<td>
-												<a href="#">{{$model->name}}</a>
+												<a href="#">{{$model->accountId}}</a>
 											</td>
-											<td>{{$model->price}}</td>
-											<td class="hidden-480">{{$model->quantity}}</td>
-											<td class="hidden-phone">{{$model->screen}}</td>
-											<td class="hidden-480">
-											<span class="label label-warning">{{$model->ram}}</span>
-											</td>
-
-											<td class="hidden-480">
-												<span class="label label-warning">{{$model->rom}}</span>
-											</td>
-											<td class="hidden-480">
-												<span class="label label-warning">{{$model->pin}}</span>
-											</td>
-
+											<td>{{$model->fullname}}</td>
+											<td class="hidden-480">{{$model->date}}</td>
+											<td>{{$model->subtotal}} </td>
 											<td>
-												<div class="hidden-phone visible-desktop action-buttons">
-													<a class="blue" href="#">
-														<i class="icon-zoom-in bigger-130"></i>
-													</a>
-
-													<button type="button">
-													<a class="green" href="{{route('product.edit' ,['product' => $model])}}">
-														<i class="icon-pencil bigger-130"></i>
-													</a>
-													</button><br>
-													<form method="post" action="{{route('product.destroy',['product' => $model])}}">
+												<div class="hidden-phone visible-desktop action-buttons">	
+												<form method="post" action="{{route('shippingOrder.update' ,$model->id)}}">
 													@csrf
-													@method('DELETE')
-														<button type="submit"><i class="icon-trash bigger-130"></i></button>
-													</form>
+													@method('PUT')
+														<button type="submit"><b class="">✅ Đã giao </b></button>
+													</form>										
+													
+													
 												</div>
 
 												<div class="hidden-desktop visible-phone">
@@ -492,7 +462,7 @@
 															<li>
 																<a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
 																	<span class="green">
-																		<i class="icon-edit bigger-120"></i>
+																		<i class="glyphicon glyphicon-remove"></i>
 																	</span>
 																</a>
 															</li>
@@ -509,10 +479,9 @@
 												</div>
 											</td>
 											<td>
-												@if($model->quantity == 0)
-												<a href="#">Hết hàng</a>
-												@else 
-												<a href="#">Còn hàng</a>
+												@if($model->status == 2)
+												<a href="#">Đang giao</a>
+												
 												@endif
 
 											</td>
@@ -523,140 +492,7 @@
 								</table>
 							</div>
 
-							<div id="modal-table" class="modal hide fade" tabindex="-1">
-								<div class="modal-header no-padding">
-									<div class="table-header">
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-										Thêm một sản phẩm mới 
-									</div>
-								</div>
-
-								<div class="modal-body no-padding">
-									<div class="row-fluid">
-										
-										<form class="form-horizontal" method="post" action="{{route('product.store')}}" enctype="multipart/form-data">
-											@csrf
-										<div class="control-group">
-									<label class="control-label" for="ten">Tên sản phẩm</label>
-
-									<div class="controls">
-										<input type="text" name="ten" placeholder="Nhập tên sản phẩm" />
-									</div>
-								</div>
-
-								<div class="control-group">
-									<label class="control-label" for="mota">Mô tả</label>
-
-									<div class="controls">
-										<input type="text" name="mota" placeholder="Nhập mô tả" />
-										
-									</div>
-								</div>
-
-								<div class="control-group">
-									<label class="control-label"  for="gia">Giá</label>
-
-									<div class="controls">
-										<input  type="text" name="gia" placeholder="Nhập giá .." />
-										&nbsp; &nbsp;
-										
-									</div>
-								</div>
-
-								<div class="control-group">
-									<label class="control-label" >Số lượng</label>
-
-									<div class="controls">
-										<input  type="text" name="soluong" placeholder="Nhập số lượng" />
-										<div class="help-block" name="soluong"></div>
-									</div>
-								</div>
-
-								<div class="control-group">
-									<label class="control-label" for="manhinh">Màn hình</label>
-
-									<div class="controls">
-										
-										<input  type="text" name="manhinh" placeholder="Nhập thông số màn hình " />
-										<div class="help-block" id="input-span-slider"></div>
-									</div>
-								</div>
-
-								<div class="control-group">
-									<label class="control-label" for="ram">Ram</label>
-
-									<div class="controls">
-										
-										<input class="span11" type="text" name="ram" placeholder="Nhập thông số Ram" />
-										<div class="help-block" id="input-span-slider"></div>
-									</div>
-								</div>
-
-								<div class="control-group">
-									<label class="control-label" for="manhinh">Rom</label>
-
-									<div class="controls">
-										
-										<input class="span11" type="text" name="rom" placeholder="Nhập thông số Ram" />
-										<div class="help-block" id="input-span-slider"></div>
-									</div>
-								</div>
-
-								<div class="space-4"></div>
-
-								<div class="control-group">
-									<label class="control-label" for="manhinh">Pin</label>
-
-									<div class="controls">
-										
-										<input class="span11" type="text" name="pin" placeholder="Nhập thông số Pin" />
-										<div class="help-block" id="input-span-slider"></div>
-									</div>
-								</div>
-								<div class="control-group">
-                                <label class="control-label" for="manhinh">Loại</label>
-                                    <select class="controls" name="loai">
-                                        <option>--Chọn loại-- </option>
-                                    @foreach($lstProv as $prov)
-                                        <option >
-                                            {{$prov->name}}
-                                        </option>
-                                    @endforeach
-                                    </select>
-
-                                </div >
-                                <div class="control-group">
-                                <label class="control-label" for="manhinh">Hình ảnh</label>
-                                
-                                <input type="file" accept="images/*" name="hinh"><br>
-
-                                </div>
-
-								<div class="form-actions">
-									<button class="btn btn-info" type="submit">
-										<i class="icon-ok bigger-110"></i>
-										Submit
-									</button>
-
-									&nbsp; &nbsp; &nbsp;
-									<button class="btn" type="reset">
-										<i class="icon-undo bigger-110"></i>
-										Reset
-									</button>
-								</div>
-										</form>
-									</div>
-								</div>
-
-								<div class="modal-footer">
-									<button class="btn btn-small btn-danger pull-left" data-dismiss="modal">
-										<i class="icon-remove"></i>
-										Close
-									</button>
-
-									
-								</div>
-							</div><!-- PAGE CONTENT ENDS -->
+							<!-- PAGE CONTENT ENDS -->
 						</div><!-- /.span -->
 					</div><!-- /.row-fluid -->
 				</div><!-- /.page-content -->

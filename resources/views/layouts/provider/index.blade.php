@@ -97,14 +97,14 @@
 						</a>
 
 						<ul class="submenu">
-							<li class="active">
+							<li >
 								<a href="{{route('product.index')}}">
 									<i class="icon-double-angle-right"></i>
 									Sản phẩm &amp; Chi tiết sản phẩm
 								</a>
 							</li>
 
-							<li>
+							<li class="active">
 								<a href="">
 									<i class="icon-double-angle-right"></i>
 									Loại Sản phẩm
@@ -116,39 +116,46 @@
 					<li>
 						<a href="#" class="dropdown-toggle">
 							<i class="icon-edit"></i>
-							<span class="menu-text"> Forms </span>
+							<span class="menu-text"> Đơn hàng </span>
 
 							<b class="arrow icon-angle-down"></b>
 						</a>
 
 						<ul class="submenu">
 							<li>
-								<a href="form-elements.html">
+								<a href="{{route('order.confirm')}}">
 									<i class="icon-double-angle-right"></i>
-									Form Elements
+									Đơn chờ xác nhận
+									<span class="badge badge-primary "><?php echo($countConfirm) ?></span>
+								</a>
+								
+							</li>
+							
+
+							<li>
+								<a href="{{route('order.transported')}}">
+									<i class="icon-double-angle-right"></i>
+									Đang vận chuyển
+									<span class="badge badge-primary "><?php echo($countTransported) ?></span>
 								</a>
 							</li>
 
 							<li>
-								<a href="form-wizard.html">
+								<a href="{{route('order.shipping')}}">
 									<i class="icon-double-angle-right"></i>
-									Wizard &amp; Validation
+									Đơn đang giao
+									<span class="badge badge-primary "><?php echo($countShipping) ?></span>
 								</a>
 							</li>
 
 							<li>
-								<a href="wysiwyg.html">
+								<a href="{{route('order.pending')}}">
 									<i class="icon-double-angle-right"></i>
-									Wysiwyg &amp; Markdown
+									Đơn chờ xử lý
+									<span class="badge badge-primary "><?php echo($countPending) ?></span>
 								</a>
 							</li>
-
-							<li>
-								<a href="dropzone.html">
-									<i class="icon-double-angle-right"></i>
-									Dropzone File Upload
-								</a>
-							</li>
+							
 						</ul>
 					</li>
 

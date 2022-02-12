@@ -164,7 +164,7 @@
 								</a>
 							</li>
 
-							<li >
+							<li>
 								<a href="{{route('provider.index')}}">
 									<i class="icon-double-angle-right"></i>
 									Loại Sản phẩm
@@ -176,46 +176,39 @@
 					<li>
 						<a href="#" class="dropdown-toggle">
 							<i class="icon-edit"></i>
-							<span class="menu-text"> Đơn hàng </span>
+							<span class="menu-text"> Forms </span>
 
 							<b class="arrow icon-angle-down"></b>
 						</a>
 
 						<ul class="submenu">
 							<li>
-								<a href="{{route('order.confirm')}}">
+								<a href="form-elements.html">
 									<i class="icon-double-angle-right"></i>
-									Đơn chờ xác nhận
-									<span class="badge badge-primary "><?php echo($countConfirm) ?></span>
-								</a>
-								
-							</li>
-							
-
-							<li>
-								<a href="{{route('order.transported')}}">
-									<i class="icon-double-angle-right"></i>
-									Đang vận chuyển
-									<span class="badge badge-primary "><?php echo($countTransported) ?></span>
+									Form Elements
 								</a>
 							</li>
 
 							<li>
-								<a href="{{route('order.shipping')}}">
+								<a href="form-wizard.html">
 									<i class="icon-double-angle-right"></i>
-									Đơn đang giao
-									<span class="badge badge-primary "><?php echo($countShipping) ?></span>
+									Wizard &amp; Validation
 								</a>
 							</li>
 
 							<li>
-								<a href="{{route('order.pending')}}">
+								<a href="wysiwyg.html">
 									<i class="icon-double-angle-right"></i>
-									Đơn chờ xử lý
-									<span class="badge badge-primary "><?php echo($countPending) ?></span>
+									Wysiwyg &amp; Markdown
 								</a>
 							</li>
-							
+
+							<li>
+								<a href="dropzone.html">
+									<i class="icon-double-angle-right"></i>
+									Dropzone File Upload
+								</a>
+							</li>
 						</ul>
 					</li>
 
@@ -384,15 +377,23 @@
 						<div class="span12">
 							<!-- PAGE CONTENT BEGINS -->
 
+							<div class="row-fluid">
+								<div class="span12">
+									
+								</div><!-- /span -->
+							</div><!-- /row -->
+
+							<div class="hr hr-18 dotted hr-double"></div>
+
 							<h4 class="pink">
 								<i class="icon-hand-right icon-animated-hand-pointer blue"></i>
-								<a href="#modal-table" role="button" class="green" data-toggle="modal"> + Thêm một sản phẩm mới </a>
+								<a href="#modal-table" role="button" class="green" data-toggle="modal"> + Thêm 1 tài khoản mới  </a>
 							</h4>
 
-							
+							<div class="hr hr-18 dotted hr-double"></div>
 
 							<div class="row-fluid">
-								<h3 class="header smaller lighter blue">Danh sách sản phẩm</h3>
+								<h3 class="header smaller lighter blue"> Danh sách Tài Khoản</h3>
 								<div class="table-header">
 									Danh sách sản phẩm
 								</div>
@@ -406,25 +407,25 @@
 													<span class="lbl"></span>
 												</label>
 											</th>
-											<th>Image</th>
+											<th>Ảnh đại diện</th>
 											<th>Id</th>
-											<th>Name</th>
-											<th>Price</th>
-											<th>Quantity</th>
-											<th>Screen</th>
-											<th>Ram</th>
-											<th>Rom</th>
-											<th>Pin</th>
-											<th class="hidden-480">Action</th>
+											<th>Tài khoản</th>
+											<th>Mật khẩu</th>
+											<th>Họ tên</th>
+											<th>Địa chỉ</th>
+											<th>Số ĐT</th>
+											<th>Email</th>
+											<th>Giới tính</th>
+											<th class="hidden-480">Hành động</th>
 					
-											<th class="hidden-480">Status</th>
+											<th class="hidden-480">Trạng thái</th>
 
 											<th></th>
 										</tr>
 									</thead>
 
 									<tbody>
-										@foreach ($lstProduct as $model)
+										@foreach ($lstaccount as $model)
 										<tr>
 											<td class="center">
 												<label>
@@ -433,45 +434,56 @@
 												</label>
 											</td>
 											<td>
-											<img src="{{$model->imageUrl}}" width="100px" height="100px">
+											<img src="{{$model->avt}}" width="500px" height="500px">
 											</td>
 
-											<td>
-												<a href="#">{{$model->id}}</a>
-											</td>
-											<td>
-												<a href="#">{{$model->name}}</a>
-											</td>
-											<td>{{$model->price}}</td>
-											<td class="hidden-480">{{$model->quantity}}</td>
-											<td class="hidden-phone">{{$model->screen}}</td>
+											
+											<td>{{$model->id}}</td>
+											<td class="hidden-480">{{$model->username}}</td>
+											<td class="hidden-phone">{{$model->password}}</td>
 											<td class="hidden-480">
-											<span class="label label-warning">{{$model->ram}}</span>
+											<span class="label label-warning">{{$model->fullname}}</span>
 											</td>
 
 											<td class="hidden-480">
-												<span class="label label-warning">{{$model->rom}}</span>
+												<span class="label label-warning">{{$model->address}}</span>
 											</td>
 											<td class="hidden-480">
-												<span class="label label-warning">{{$model->pin}}</span>
+												<span class="label label-warning">{{$model->phone}}</span>
+											</td>
+											<td class="hidden-480">
+												<span class="label label-warning">{{$model->email}}</span>
+											</td>
+											<td class="hidden-480">
+												<span class="label label-warning">{{$model->sex}}</span>
 											</td>
 
 											<td>
 												<div class="hidden-phone visible-desktop action-buttons">
-													<a class="blue" href="#">
-														<i class="icon-zoom-in bigger-130"></i>
-													</a>
+												<form method="post" action="{{route('account.block' ,['account' => $model])}}">
+													@csrf
+													@method('PUT')
+													<button type="submit">
+											
+													
+													<i class="">Khóa</i>
+													
+											</button>
+													</form>
+												<br>
 
 													<button type="button">
-													<a class="green" href="{{route('product.edit' ,['product' => $model])}}">
-														<i class="icon-pencil bigger-130"></i>
+													<a class="green" href="{{route('account.edit' ,['account' => $model])}}">
+														<i class="icon-pencil bigger-130">Sửa</i>
 													</a>
-													</button><br>
-													<form method="post" action="{{route('product.destroy',['product' => $model])}}">
+													</button>
+													
+													<form method="post" action="{{route('account.destroy',['account' => $model])}}">
 													@csrf
 													@method('DELETE')
-														<button type="submit"><i class="icon-trash bigger-130"></i></button>
+														<button type="submit"><i class="icon-trash bigger-130">Xóa</i></button>
 													</form>
+													
 												</div>
 
 												<div class="hidden-desktop visible-phone">
@@ -509,10 +521,10 @@
 												</div>
 											</td>
 											<td>
-												@if($model->quantity == 0)
-												<a href="#">Hết hàng</a>
+												@if($model->status == 0)
+												<a href="#">Còn hoạt động</a>
 												@else 
-												<a href="#">Còn hàng</a>
+												<a href="#">Đã khóa</a>
 												@endif
 
 											</td>
@@ -527,77 +539,77 @@
 								<div class="modal-header no-padding">
 									<div class="table-header">
 										<button type="button" class="close" data-dismiss="modal">&times;</button>
-										Thêm một sản phẩm mới 
+										Thêm một tài khoản mới
 									</div>
 								</div>
 
 								<div class="modal-body no-padding">
 									<div class="row-fluid">
 										
-										<form class="form-horizontal" method="post" action="{{route('product.store')}}" enctype="multipart/form-data">
+										<form class="form-horizontal" method="post" action="{{route('account.store')}}" enctype="multipart/form-data">
 											@csrf
 										<div class="control-group">
-									<label class="control-label" for="ten">Tên sản phẩm</label>
+									<label class="control-label" for="ursename">nhaptaikhoan</label>
 
 									<div class="controls">
-										<input type="text" name="ten" placeholder="Nhập tên sản phẩm" />
+										<input type="text" name="tendangnhap" placeholder="Nhapusername" />
 									</div>
 								</div>
 
 								<div class="control-group">
-									<label class="control-label" for="mota">Mô tả</label>
+									<label class="control-label" for="mota">Password</label>
 
 									<div class="controls">
-										<input type="text" name="mota" placeholder="Nhập mô tả" />
+										<input type="text" name="matkhau" placeholder="Nhapmatkhau" />
 										
 									</div>
 								</div>
 
 								<div class="control-group">
-									<label class="control-label"  for="gia">Giá</label>
+									<label class="control-label"  for="gia">Fullname</label>
 
 									<div class="controls">
-										<input  type="text" name="gia" placeholder="Nhập giá .." />
+										<input  type="text" name="hovaten" placeholder="Nhaphovaten" />
 										&nbsp; &nbsp;
 										
 									</div>
 								</div>
 
 								<div class="control-group">
-									<label class="control-label" >Số lượng</label>
+									<label class="control-label" >Nhapdiachi</label>
 
 									<div class="controls">
-										<input  type="text" name="soluong" placeholder="Nhập số lượng" />
+										<input  type="text" name="diachi" placeholder="Nhapdiachi" />
 										<div class="help-block" name="soluong"></div>
 									</div>
 								</div>
 
 								<div class="control-group">
-									<label class="control-label" for="manhinh">Màn hình</label>
+									<label class="control-label" for="manhinh">Nhapsodienthoai</label>
 
 									<div class="controls">
 										
-										<input  type="text" name="manhinh" placeholder="Nhập thông số màn hình " />
+										<input  type="text" name="sodienthoai" placeholder="Nhậpsodienthoai " />
 										<div class="help-block" id="input-span-slider"></div>
 									</div>
 								</div>
 
 								<div class="control-group">
-									<label class="control-label" for="ram">Ram</label>
+									<label class="control-label" for="ram">Address</label>
 
 									<div class="controls">
 										
-										<input class="span11" type="text" name="ram" placeholder="Nhập thông số Ram" />
+										<input class="span11" type="text" name="email" placeholder="Nhapemail" />
 										<div class="help-block" id="input-span-slider"></div>
 									</div>
 								</div>
 
 								<div class="control-group">
-									<label class="control-label" for="manhinh">Rom</label>
+									<label class="control-label" for="manhinh">Email</label>
 
 									<div class="controls">
 										
-										<input class="span11" type="text" name="rom" placeholder="Nhập thông số Ram" />
+										<input class="span11" type="text" name="gioitinh" placeholder="Nhapgioitinh" />
 										<div class="help-block" id="input-span-slider"></div>
 									</div>
 								</div>
@@ -605,26 +617,15 @@
 								<div class="space-4"></div>
 
 								<div class="control-group">
-									<label class="control-label" for="manhinh">Pin</label>
+									<label class="control-label" for="manhinh">Gioitinh</label>
 
 									<div class="controls">
 										
-										<input class="span11" type="text" name="pin" placeholder="Nhập thông số Pin" />
+										<input class="span11" type="text" name="pin" placeholder="Nhapgioitinh" />
 										<div class="help-block" id="input-span-slider"></div>
 									</div>
 								</div>
-								<div class="control-group">
-                                <label class="control-label" for="manhinh">Loại</label>
-                                    <select class="controls" name="loai">
-                                        <option>--Chọn loại-- </option>
-                                    @foreach($lstProv as $prov)
-                                        <option >
-                                            {{$prov->name}}
-                                        </option>
-                                    @endforeach
-                                    </select>
-
-                                </div >
+								
                                 <div class="control-group">
                                 <label class="control-label" for="manhinh">Hình ảnh</label>
                                 

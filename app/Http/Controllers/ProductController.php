@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\product;
 use App\Models\provider;
+use App\Models\invoice;
 use App\Http\Requests\StoreproductRequest;
 use App\Http\Requests\UpdateproductRequest;
 use Illuminate\Support\Facades\Storage;
@@ -31,12 +32,21 @@ class ProductController extends Controller
     }
     public function index()
     {
+        function countOrder($status){
+            $count = invoice::where('invoices.status' , '=' , $status)->count();
+            return $count;
+        }
+        $countConfirmOrder = countOrder(0);
+        $countTransportedOrder = countOrder(1);
+        $countShippingOrder = countOrder(2);
+        $countPendingOrder = countOrder(5);
         $lstProv = provider::all();
         $lstProduct = product::all();
         foreach ($lstProduct as $pro){
             $this->fixImage($pro);
         }
-        return view('layouts.product.index' , ['lstProduct' => $lstProduct , 'lstProv' => $lstProv]);
+        return view('layouts.product.index' , ['lstProduct' => $lstProduct , 
+        'lstProv' => $lstProv , 'countConfirm' =>$countConfirmOrder , 'countTransported' =>$countTransportedOrder ,'countShipping' =>$countShippingOrder , 'countPending' =>$countPendingOrder]);
         
     }
 

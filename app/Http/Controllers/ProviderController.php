@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\provider;
+use App\Models\invoice;
 use App\Http\Requests\StoreproviderRequest;
 use App\Http\Requests\UpdateproviderRequest;
 use Illuminate\Support\Facades\Redirect;
@@ -17,10 +18,18 @@ class ProviderController extends Controller
      */
     public function index()
     {
+        function countOrder($status){
+            $count = invoice::where('invoices.status' , '=' , $status)->count();
+            return $count;
+        }
+        $countConfirmOrder = countOrder(0);
+        $countTransportedOrder = countOrder(1);
+        $countShippingOrder = countOrder(2);
+        $countPendingOrder = countOrder(5);
         $lstProvider = provider::all();
         
         
-        return view('layouts.provider.index' , ['lstProvider' => $lstProvider ]);
+        return view('layouts.provider.index' , ['lstProvider' => $lstProvider ,'countConfirm' =>$countConfirmOrder , 'countTransported' =>$countTransportedOrder ,'countShipping' =>$countShippingOrder , 'countPending' =>$countPendingOrder]);
     }
 
     /**
