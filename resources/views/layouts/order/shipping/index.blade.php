@@ -414,7 +414,7 @@
 									</thead>
 
 									<tbody>
-										@if($lstOrder)
+										
 										@foreach ($lstOrder as $model)
 										<tr>
 											<td class="center">

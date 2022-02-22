@@ -3,7 +3,7 @@
 	<head>
 		
 <meta charset="utf-8" />
-		<title>Admin</title>
+		<title>Tables - Ace Admin</title>
 
 		<meta name="description" content="Static &amp; Dynamic Tables" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -43,7 +43,66 @@
 	</head>
 
 	<body>
-		
+		<div class="navbar" id="navbar">
+			<script type="text/javascript">
+				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="navbar-inner">
+				<div class="container-fluid">
+					<a href="#" class="brand">
+						<small>
+							<i class="icon-leaf"></i>
+							 Admin
+						</small>
+					</a><!-- /.brand -->
+
+					<ul class="nav ace-nav pull-right">
+						
+						
+
+						
+
+						<li class="light-blue">
+							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+								<img class="nav-user-photo" src="assets/avatars/user.jpg" alt="Jason's Photo" />
+								<span class="user-info">
+									<small>Welcome,</small>
+									Jason
+								</span>
+
+								<i class="icon-caret-down"></i>
+							</a>
+
+							<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
+								<li>
+									<a href="#">
+										<i class="icon-cog"></i>
+										Settings
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<i class="icon-user"></i>
+										Profile
+									</a>
+								</li>
+
+								<li class="divider"></li>
+
+								<li>
+									<a href="#">
+										<i class="icon-off"></i>
+										Logout
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul><!-- /.ace-nav -->
+				</div><!-- /.container-fluid -->
+			</div><!-- /.navbar-inner -->
+		</div>
 
 		<div class="main-container container-fluid">
 			<a class="menu-toggler" id="menu-toggler" href="#">
@@ -84,6 +143,7 @@
 						<span class="btn btn-danger"></span>
 					</div>
 				</div><!-- #sidebar-shortcuts -->
+				
 
 				<ul class="nav nav-list">
 					
@@ -104,13 +164,13 @@
 								</a>
 							</li>
 
-							<li class="active">
-								<a href="">
+							<li>
+								<a href="{{route('provider.index')}}">
 									<i class="icon-double-angle-right"></i>
 									Nhà sản xuất
 								</a>
 							</li>
-							<li >
+							<li class="active">
 								<a href="{{route('invoice.index')}}">
 									<i class="icon-double-angle-right"></i>
 									Hóa đơn &amp; Chi tiết hóa đơn
@@ -128,46 +188,39 @@
 					<li>
 						<a href="#" class="dropdown-toggle">
 							<i class="icon-edit"></i>
-							<span class="menu-text"> Đơn hàng </span>
+							<span class="menu-text"> Forms </span>
 
 							<b class="arrow icon-angle-down"></b>
 						</a>
 
 						<ul class="submenu">
 							<li>
-								<a href="{{route('order.confirm')}}">
+								<a href="form-elements.html">
 									<i class="icon-double-angle-right"></i>
-									Đơn chờ xác nhận
-									<span class="badge badge-primary "><?php echo($countConfirm) ?></span>
-								</a>
-								
-							</li>
-							
-
-							<li>
-								<a href="{{route('order.transported')}}">
-									<i class="icon-double-angle-right"></i>
-									Đang vận chuyển
-									<span class="badge badge-primary "><?php echo($countTransported) ?></span>
+									Form Elements
 								</a>
 							</li>
 
 							<li>
-								<a href="{{route('order.shipping')}}">
+								<a href="form-wizard.html">
 									<i class="icon-double-angle-right"></i>
-									Đơn đang giao
-									<span class="badge badge-primary "><?php echo($countShipping) ?></span>
+									Wizard &amp; Validation
 								</a>
 							</li>
 
 							<li>
-								<a href="{{route('order.pending')}}">
+								<a href="wysiwyg.html">
 									<i class="icon-double-angle-right"></i>
-									Đơn chờ xử lý
-									<span class="badge badge-primary "><?php echo($countPending) ?></span>
+									Wysiwyg &amp; Markdown
 								</a>
 							</li>
-							
+
+							<li>
+								<a href="dropzone.html">
+									<i class="icon-double-angle-right"></i>
+									Dropzone File Upload
+								</a>
+							</li>
 						</ul>
 					</li>
 
@@ -308,7 +361,7 @@
 								<i class="icon-angle-right arrow-icon"></i>
 							</span>
 						</li>
-						<li class="active">Nhà sản xuất  </li>
+						<li class="active">Hóa đơn &amp; Chi tiết hóa đơn</li>
 					</ul><!-- .breadcrumb -->
 
 					<div class="nav-search" id="nav-search">
@@ -327,7 +380,7 @@
 							Tables
 							<small>
 								<i class="icon-double-angle-right"></i>
-								Nhà sản xuất
+                                Hóa đơn 
 							</small>
 						</h1>
 					</div><!-- /.page-header -->
@@ -336,28 +389,16 @@
 						<div class="span12">
 							<!-- PAGE CONTENT BEGINS -->
 
+							
+
+							
 							<div class="row-fluid">
-								<div class="span12">
-									
-								</div><!-- /span -->
-							</div><!-- /row -->
-
-							<div class="hr hr-18 dotted hr-double"></div>
-
-							<h4 class="pink">
-								<i class="icon-hand-right icon-animated-hand-pointer blue"></i>
-								<a href="#modal-table" role="button" class="green" data-toggle="modal"> + Thêm nhà sản xuất mới </a>
-							</h4>
-
-							<div class="hr hr-18 dotted hr-double"></div>
-
-							<div class="row-fluid">
-								<h3 class="header smaller lighter blue">Danh sách nhà sản xuất</h3>
+								<h3 class="header smaller lighter blue">Danh sách hóa đơn</h3>
 								<div class="table-header">
-									Danh sách nhà sản xuất
+									Danh sách hóa đơn
 								</div>
 
-								<table id="sample-table-2" class="table table-striped table-bordered table-hover">
+								<table class="table table-striped table-bordered table-hover">
 									<thead>
 										<tr>
 											<th class="center">
@@ -366,21 +407,21 @@
 													<span class="lbl"></span>
 												</label>
 											</th>
-											
 											<th>Id</th>
-											<th>Name</th>
-											
+											<th>AccountId</th>
+											<th>Date</th>
+											<th>Subtotal</th>
 											
 											<th class="hidden-480">Action</th>
 					
-											<th class="hidden-480">Status</th>
+										
 
 											<th></th>
 										</tr>
 									</thead>
 
 									<tbody>
-										@foreach ($lstProvider as $model)
+										@foreach ($lstInvoice as $model)
 										<tr>
 											<td class="center">
 												<label>
@@ -388,28 +429,28 @@
 													<span class="lbl"></span>
 												</label>
 											</td>
-											
-
 											<td>
-												<a href="#">{{$model->id}}</a>
+												{{$model->id}}
 											</td>
 											<td>
-												<a href="#">{{$model->name}}</a>
+												{{$model->accountId}}
 											</td>
+                                            <td class="hidden-480">{{$model->date}}</td>
+											<td>{{$model->subtotal}}</td>
 											
-
+											
 											<td>
 												<div class="hidden-phone visible-desktop action-buttons">
-													<a class="blue" href="#">
+													<a class="blue" href="{{route('invoice.show' ,[  $model->id])}}">
 														<i class="icon-zoom-in bigger-130"></i>
 													</a>
 
 													<button type="button">
-													<a class="green" href="{{route('provider.edit' ,['provider' => $model])}}">
+													<a class="green" href="{{route('invoice.edit' ,['invoice' => $model])}}">
 														<i class="icon-pencil bigger-130"></i>
 													</a>
 													</button><br>
-													<form method="post" action="{{route('provider.destroy',['provider' => $model])}}">
+													<form method="post" action="{{route('invoice.destroy',['invoice' => $model])}}">
 													@csrf
 													@method('DELETE')
 														<button type="submit"><i class="icon-trash bigger-130"></i></button>
@@ -450,14 +491,7 @@
 													</div>
 												</div>
 											</td>
-											<td>
-												@if($model->status == 0)
-												<a href="#">Còn kinh doanh</a>
-												@else 
-												<a href="#">Ngừng kinh doanh</a>
-												@endif
-
-											</td>
+											
 										</tr>
 									@endforeach
 										
@@ -469,23 +503,34 @@
 								<div class="modal-header no-padding">
 									<div class="table-header">
 										<button type="button" class="close" data-dismiss="modal">&times;</button>
-										Thêm nhà sản xuất mới 
+										Thêm một hóa đơn mới
 									</div>
 								</div>
 
 								<div class="modal-body no-padding">
 									<div class="row-fluid">
 										
-										<form class="form-horizontal" method="post" action="{{route('provider.store')}}" enctype="multipart/form-data">
+										<form class="form-horizontal" method="post" action="{{route('invoice.store')}}" enctype="multipart/form-data">
 											@csrf
 										<div class="control-group">
-									<label class="control-label" for="ten">Tên nhà sản xuất</label>
+									<label class="control-label" for="matk">Mã tài khoản</label>
 
 									<div class="controls">
-										<input type="text" name="ten" placeholder="Nhập tên nhà sản xuất" />
+										<input type="text" name="matk" placeholder="Nhập mã tài khoản" />
 									</div>
-								</div>																
-								
+								</div>
+                               
+
+								<div class="control-group">
+									<label class="control-label"  for="tongtien">Tổng tiền</label>
+
+									<div class="controls">
+										<input  type="text" name="tongtien" placeholder="Nhập tổng tiền" />
+										&nbsp; &nbsp;
+										
+									</div>
+								</div>
+
 								
 								<div class="form-actions">
 									<button class="btn btn-info" type="submit">
@@ -596,13 +641,13 @@
 		<!-- inline scripts related to this page -->
 
 		<script type="text/javascript">
-			jQuery(function($) {
-				var oTable1 = $('#sample-table-2').dataTable( {
-				"aoColumns": [
-			      { "bSortable": false },
-			      null, null,null, null, null,
-				  { "bSortable": false }
-				] } );
+			// jQuery(function($) {
+			// 	var oTable1 = $('#sample-table-2').dataTable( {
+			// 	"aoColumns": [
+			//       { "bSortable": false },
+			//       null, null,null, null, null,
+			// 	  { "bSortable": false }
+			// 	] } );
 				
 				
 				$('table th input:checkbox').on('click' , function(){

@@ -53,13 +53,13 @@
 						</li>
 
 						<li>
-							<a href="#">Forms</a>
+							<a href="#">Tables</a>
 
 							<span class="divider">
 								<i class="icon-angle-right arrow-icon"></i>
 							</span>
 						</li>
-						<li class="active">Form Elements</li>
+						<li class="active">Sản phẩm &amp; Chi tiết sản phẩm</li>
 					</ul><!-- .breadcrumb -->
 
 					
@@ -68,10 +68,10 @@
 				<div class="page-content">
 					<div class="page-header position-relative">
 						<h1>
-							Form Elements
+							Sản phẩm 
 							<small>
 								<i class="icon-double-angle-right"></i>
-								Common form elements and layouts
+								Chỉnh sửa sản phẩm
 							</small>
 						</h1>
 					</div><!-- /.page-header -->

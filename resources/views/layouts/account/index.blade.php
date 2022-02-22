@@ -157,8 +157,8 @@
 						</a>
 
 						<ul class="submenu">
-							<li class="active">
-								<a href="tables.html">
+							<li >
+								<a href="{{route('account.index')}}">
 									<i class="icon-double-angle-right"></i>
 									Sản phẩm &amp; Chi tiết sản phẩm
 								</a>
@@ -167,8 +167,21 @@
 							<li>
 								<a href="{{route('provider.index')}}">
 									<i class="icon-double-angle-right"></i>
-									Loại Sản phẩm
+									Nhà sản xuất
 								</a>
+								<li>
+									<a href="{{route('invoice.index')}}">
+										<i class="icon-double-angle-right"></i>
+										Hóa đơn &amp; Chi tiết hóa đơn
+									</a>
+								</li>
+								
+									<li class="active">
+									<a href="{{route('account.index')}}">
+										<i class="icon-double-angle-right"></i>
+										Tài khoản
+									</a>
+								</li>
 							</li>
 						</ul>
 					</li>
@@ -549,82 +562,74 @@
 										<form class="form-horizontal" method="post" action="{{route('account.store')}}" enctype="multipart/form-data">
 											@csrf
 										<div class="control-group">
-									<label class="control-label" for="ursename">nhaptaikhoan</label>
+									<label class="control-label" for="ursename">Tài khoản</label>
 
 									<div class="controls">
-										<input type="text" name="tendangnhap" placeholder="Nhapusername" />
+										<input type="text" name="tendangnhap" placeholder="Nhập tài khoản" />
 									</div>
 								</div>
 
 								<div class="control-group">
-									<label class="control-label" for="mota">Password</label>
+									<label class="control-label" for="mota">Mật khẩu</label>
 
 									<div class="controls">
-										<input type="text" name="matkhau" placeholder="Nhapmatkhau" />
+										<input type="text" name="matkhau" placeholder="Nhập mật khẩu" />
 										
 									</div>
 								</div>
 
 								<div class="control-group">
-									<label class="control-label"  for="gia">Fullname</label>
+									<label class="control-label"  for="">Tên đầy đủ</label>
 
 									<div class="controls">
-										<input  type="text" name="hovaten" placeholder="Nhaphovaten" />
+										<input  type="text" name="hovaten" placeholder="Nhập họ và tên" />
 										&nbsp; &nbsp;
 										
 									</div>
 								</div>
 
 								<div class="control-group">
-									<label class="control-label" >Nhapdiachi</label>
+									<label class="control-label" >Địa chỉ</label>
 
 									<div class="controls">
-										<input  type="text" name="diachi" placeholder="Nhapdiachi" />
+										<input  type="text" name="diachi" placeholder="Nhập địa chỉ" />
 										<div class="help-block" name="soluong"></div>
 									</div>
 								</div>
 
 								<div class="control-group">
-									<label class="control-label" for="manhinh">Nhapsodienthoai</label>
+									<label class="control-label" for="">Số điện thoại</label>
 
 									<div class="controls">
 										
-										<input  type="text" name="sodienthoai" placeholder="Nhậpsodienthoai " />
+										<input  type="text" name="sodienthoai" placeholder="Nhập số điện thoại" />
 										<div class="help-block" id="input-span-slider"></div>
 									</div>
 								</div>
 
 								<div class="control-group">
-									<label class="control-label" for="ram">Address</label>
+									<label class="control-label" for="">Email</label>
 
 									<div class="controls">
 										
-										<input class="span11" type="text" name="email" placeholder="Nhapemail" />
+										<input class="text" type="text" name="email" placeholder="Nhập emial" />
 										<div class="help-block" id="input-span-slider"></div>
 									</div>
 								</div>
 
 								<div class="control-group">
-									<label class="control-label" for="manhinh">Email</label>
+									<label class="control-label" for="">Giới tính</label>
 
 									<div class="controls">
 										
-										<input class="span11" type="text" name="gioitinh" placeholder="Nhapgioitinh" />
+										<input class="text" type="text" name="gioitinh" placeholder=" Nhập giới tính" />
 										<div class="help-block" id="input-span-slider"></div>
 									</div>
 								</div>
 
 								<div class="space-4"></div>
 
-								<div class="control-group">
-									<label class="control-label" for="manhinh">Gioitinh</label>
-
-									<div class="controls">
-										
-										<input class="span11" type="text" name="pin" placeholder="Nhapgioitinh" />
-										<div class="help-block" id="input-span-slider"></div>
-									</div>
-								</div>
+								
 								
                                 <div class="control-group">
                                 <label class="control-label" for="manhinh">Hình ảnh</label>

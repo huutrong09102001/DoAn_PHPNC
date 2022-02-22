@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\product;
+use App\Models\invoice_detail;
 use Illuminate\Http\Request;
 
 class ProductAPIController extends Controller
@@ -29,9 +30,21 @@ class ProductAPIController extends Controller
 
         ]);
     }
-    function LayDSSanPhamMoi()
+
+    function LayDSSPBanChay()
     {
+        $product = product::orderBy('quantity')->take(6)->get();
         
+        return json_encode ([
+            'data' => $product
+        ]);
+    }
+    function LayDSSPNoiBat()
+    {
+        $product = product::orderBy('price')->take(6)->get();
+        return json_encode ([
+            'data' => $product
+        ]);
     }
     public function index()
     {

@@ -53,13 +53,13 @@
 						</li>
 
 						<li>
-							<a href="#">Forms</a>
+							<a href="#">Tables</a>
 
 							<span class="divider">
 								<i class="icon-angle-right arrow-icon"></i>
 							</span>
 						</li>
-						<li class="active">Form Elements</li>
+						<li class="active">Tài khoản</li>
 					</ul><!-- .breadcrumb -->
 
 					
@@ -68,10 +68,10 @@
 				<div class="page-content">
 					<div class="page-header position-relative">
 						<h1>
-							Form Elements
+							Tài khoản
 							<small>
 								<i class="icon-double-angle-right"></i>
-								Common form elements and layouts
+								Chỉnh sửa thông tin
 							</small>
 						</h1>
 					</div><!-- /.page-header -->
@@ -95,7 +95,7 @@
 									<label class="control-label" >Mật khẩu</label>
 
 									<div class="controls">
-										<input class="span11" type="text" name="matkhau" value="{{$account->password}}" />
+										<input class="text" type="text" name="matkhau" value="{{$account->password}}" />
 										
 									</div>
 								</div>

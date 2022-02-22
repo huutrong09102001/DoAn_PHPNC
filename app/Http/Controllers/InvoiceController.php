@@ -8,6 +8,8 @@ use App\Models\product;
 use App\Http\Requests\StoreinvoiceRequest;
 use App\Http\Requests\UpdateinvoiceRequest;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class InvoiceController extends Controller
 {
@@ -103,7 +105,8 @@ class InvoiceController extends Controller
     }
     public function index()
     {
-        //
+        $lstInvoice = invoice::where('status','3' )->get();
+        return view('layouts.invoice.index' , ['lstInvoice' => $lstInvoice]);
     }
 
     /**
@@ -122,9 +125,48 @@ class InvoiceController extends Controller
      * @param  \App\Http\Requests\StoreinvoiceRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreinvoiceRequest $request)
+    public function store(Request $request)
     {
-        //
+        $year =  Carbon::now('Asia/Ho_Chi_Minh')->year;
+        $month = (int)Carbon::now('Asia/Ho_Chi_Minh')->month;
+        
+        if( $month < 10) 
+        {
+            $month = '0'.$month;
+        }
+        $day = (int)Carbon::now('Asia/Ho_Chi_Minh')->day;
+        
+        if($day < 10)
+        {
+            $day = '0'.$day;
+        }
+        
+        $hour = (int)Carbon::now('Asia/Ho_Chi_Minh')->hour;
+        if( $hour < 10) 
+        {
+            $hour = '0'.$hour;
+        }
+        $minute = (int) Carbon::now('Asia/Ho_Chi_Minh')->minute;
+        if( $minute < 10) 
+        {
+            $minute = '0'.$minute;
+        }
+        $second = (int)Carbon::now('Asia/Ho_Chi_Minh')->second;
+        if( $second < 10) 
+        {
+            $second = '0'.$second;
+        }
+        $id = $year.$month.$day.$hour.$minute.$second;
+        $invoice = new invoice;
+        $invoice->fill([
+            'id' => $id,
+            'accountId' => $request->input('matk'),
+            'date' => Carbon::now('Asia/Ho_Chi_Minh')->toDateTimeString(),
+            'subtotal' => $request->input('tongtien'),
+            'status'=> '0',
+        ]);
+        $invoice->save();
+        return Redirect::route('invoice.index');
     }
 
     /**
@@ -133,9 +175,10 @@ class InvoiceController extends Controller
      * @param  \App\Models\invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function show(invoice $invoice)
+    public function show($id)
     {
-        //
+        $invoice_detail= invoice_detail::where('invoiceId',"=",$id)->get();
+        return view('layouts.invoice.show' ,["invoice_detail" => $invoice_detail]);
     }
 
     /**
@@ -146,7 +189,7 @@ class InvoiceController extends Controller
      */
     public function edit(invoice $invoice)
     {
-        //
+        return view('layouts.invoice.edit' ,["invoice" => $invoice]);
     }
 
     /**
@@ -156,9 +199,15 @@ class InvoiceController extends Controller
      * @param  \App\Models\invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateinvoiceRequest $request, invoice $invoice)
+    public function update(Request $request, invoice $invoice)
     {
-        //
+        $invoice->fill([
+            'date' => $request->input('ngay'),
+            'subtotal' => $request->input('tongtien'),  
+            
+        ]);
+        $invoice->save();
+        return Redirect::route('invoice.index');
     }
 
     /**
@@ -169,6 +218,7 @@ class InvoiceController extends Controller
      */
     public function destroy(invoice $invoice)
     {
-        //
+        $invoice->delete();
+        return Redirect::route('invoice.index');
     }
 }

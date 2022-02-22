@@ -53,13 +53,13 @@
 						</li>
 
 						<li>
-							<a href="#">Tables</a>
+							<a href="#">Forms</a>
 
 							<span class="divider">
 								<i class="icon-angle-right arrow-icon"></i>
 							</span>
 						</li>
-						<li class="active">Loại sản phẩm</li>
+						<li class="active">Hóa đơn</li>
 					</ul><!-- .breadcrumb -->
 
 					
@@ -68,10 +68,10 @@
 				<div class="page-content">
 					<div class="page-header position-relative">
 						<h1>
-							Loại sản phẩm
+							Hóa đơn
 							<small>
 								<i class="icon-double-angle-right"></i>
-								Chỉnh sửa thông tin
+								Chỉnh sửa hóa đơn
 							</small>
 						</h1>
 					</div><!-- /.page-header -->
@@ -80,16 +80,41 @@
 						<div class="span12">
 							<!-- PAGE CONTENT BEGINS -->
 
-							<form class="form-horizontal" method="post" action="{{route('provider.update' , ['provider' => $provider])}}" enctype="multipart/form-data">
+							<form class="form-horizontal" method="post" action="{{route('invoice.update' , ['invoice' => $invoice])}}" enctype="multipart/form-data">
                             @csrf
 							@method('patch')
 										<div class="control-group">
-									<label class="control-label">Tên sản phẩm</label>
+									<label class="control-label">Mã tài khoản</label>
 
 									<div class="controls">
-										<input type="text" name="ten" value="{{$provider->name}}" />
+										<input type="text" name="matk" value="{{$invoice->accountId}}" />
 									</div>
 								</div>
+
+								<div class="control-group">
+									<label class="control-label" >Ngày</label>
+
+									<div class="controls">
+										<input class="text" type="text" name="ngay" value="{{$invoice->date}}" />
+										
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label"  for="tongtien">Tổng tiền</label>
+
+									<div class="controls">
+										<input  type="text" name="tongtien" value="{{$invoice->subtotal}}" />
+										&nbsp; &nbsp;
+										
+									</div>
+								</div>
+
+								
+
+                              
+                               
+
 								<div class="form-actions">
 									<button class="btn btn-info" type="submit">
 										<i class="icon-ok bigger-110"></i>

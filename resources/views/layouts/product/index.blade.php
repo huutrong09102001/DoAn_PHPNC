@@ -92,7 +92,7 @@
 								<li class="divider"></li>
 
 								<li>
-									<a href="#">
+									<a href="{{route('logout')}}">
 										<i class="icon-off"></i>
 										Logout
 									</a>
@@ -158,16 +158,29 @@
 
 						<ul class="submenu">
 							<li class="active">
-								<a href="tables.html">
+								<a href="">
 									<i class="icon-double-angle-right"></i>
 									Sản phẩm &amp; Chi tiết sản phẩm
 								</a>
-							</li>
+							</li>	
 
 							<li >
+								
 								<a href="{{route('provider.index')}}">
 									<i class="icon-double-angle-right"></i>
-									Loại Sản phẩm
+									Nhà sản xuất
+								</a>
+							</li>
+							<li >
+								<a href="{{route('invoice.index')}}">
+									<i class="icon-double-angle-right"></i>
+									Hóa đơn &amp; Chi tiết hóa đơn
+								</a>
+							</li>
+							<li>
+								<a href="{{route('account.index')}}">
+									<i class="icon-double-angle-right"></i>
+									Tài khoản
 								</a>
 							</li>
 						</ul>
@@ -614,9 +627,9 @@
 									</div>
 								</div>
 								<div class="control-group">
-                                <label class="control-label" for="manhinh">Loại</label>
+                                <label class="control-label" for="manhinh">Nhà sản xuất</label>
                                     <select class="controls" name="loai">
-                                        <option>--Chọn loại-- </option>
+                                        <option>--Chọn nhà sản xuất-- </option>
                                     @foreach($lstProv as $prov)
                                         <option >
                                             {{$prov->name}}
